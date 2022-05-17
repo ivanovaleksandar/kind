@@ -5,6 +5,7 @@ env:
   MINIKUBE_VERSION: v1.15.1
   DOCKER_IMAGE_TAG: latest-1.21
   KUBERNETES_VERSION: v1.21.1
+  DOCKER_IMAGE: 20-dind
 
 jobs:
   build:
