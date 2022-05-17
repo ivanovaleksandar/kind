@@ -1,5 +1,6 @@
 #!/bin/sh
 set -e
+set -x
 mkdir -p /var/kube-config
 echo $KUBERNETES_VERSION > /var/kube-config/kubernetes-version
 KUBERNETES_MAJOR_MINOR_VERSION="$(echo ${KUBERNETES_VERSION:1} | cut -d. -f 1-2)"
@@ -23,7 +24,7 @@ echo "#!/bin/sh" > /usr/local/bin/systemctl
 chmod +x /usr/local/bin/systemctl
 
 # add glibc as kube/minikube/things need it
-curl -Lo glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk
+curl -Lo glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.35-r0/glibc-2.35-r0.apk
 apk add glibc.apk
 rm -f glibc.apk
 

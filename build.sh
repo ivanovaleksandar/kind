@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -x 
+
 # KUBERNETES_VERSION="v1.10.0"
 # MINIKUBE_VERSION="v0.28.2"
 TAG_LATEST="$1"
