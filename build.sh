@@ -5,22 +5,22 @@ TAG_LATEST="$1"
 TAG_VERSION="$2"
 
 if [ -z "$DOCKER_IMAGE" ]; then
-	DOCKER_IMAGE="19.03.5-dind"
+	DOCKER_IMAGE="20-dind"
 	echo "Defaulting Docker image to $DOCKER_IMAGE"
 fi
 
 if [ -z "$MINIKUBE_VERSION" ]; then
-	MINIKUBE_VERSION="v1.3.1"
+	MINIKUBE_VERSION="v1.25.2"
 	echo "Defaulting Minikube version to $MINIKUBE_VERSION"
 fi
 
 if [ -z "$KUBERNETES_VERSION" ]; then
-	KUBERNETES_VERSION="v1.14.8"
+	KUBERNETES_VERSION="v1.21.1"
 	echo "Defaulting Kubernetes version to $KUBERNETES_VERSION"
 fi
 
 if [ -z "$STATIC_IP" ]; then
-	STATIC_IP="172.30.99.1"
+	STATIC_IP="172.17.0.100"
 	echo "Defaulting static IP to $STATIC_IP"
 fi
 
