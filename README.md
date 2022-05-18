@@ -1,16 +1,16 @@
 `kind`, like `docker:dind` but aims to make a full Kubernetes cluster available to test against in your CI pipeline. It is fast to startup and totally ephemeral, so you get a clean start for each CI run.
 
-[![Build Status](https://travis-ci.org/bsycorp/kind.svg?branch=master)](https://travis-ci.org/bsycorp/kind)
+[![Build Status](https://travis-ci.org/aleksivanov/kind.svg?branch=master)](https://travis-ci.org/aleksivanov/kind)
 
 ## Quickstart
 
-Use prebuilt images from Dockerhub: https://hub.docker.com/r/bsycorp/kind/
+Use prebuilt images from Dockerhub: https://hub.docker.com/r/aleksivanov/kind/
 
 Run:
 
-`docker run -it --privileged -p 8443:8443 -p 10080:10080 bsycorp/kind:latest-1.12`
+`docker run -it --privileged -p 8443:8443 -p 10080:10080 aleksivanov/kind:latest-1.12`
 
-Or more likely run CI in, [see examples](https://github.com/bsycorp/kind#can-i-use-it-on-my-cloud-cicd-provider)
+Or more likely run CI in, [see examples](https://github.com/aleksivanov/kind#can-i-use-it-on-my-cloud-cicd-provider)
 
 ## Why?
 
@@ -61,9 +61,9 @@ As you want your docker images you want to test to be built into `kind` docker h
 Not sure as we are running this in an on-premise GitLab install, but interested to hear feedback from people where it does or doesn't work. As above it is designed to be like `docker:dind` but with Kubernetes, so in theory anywhere `docker:dind` runs this should run, and like `docker:dind` it requires the container be launched as `--privileged` which generally cloud providers don't like.
 
 Tested an known to Work:
-- GitLab On-Premise (CE or EE*) ([example](https://github.com/bsycorp/kind-gitlab-example))
-- CircleCI `machine` executors ([example](https://github.com/bsycorp/kind-circleci-example))
-- Travis CI ([example](https://github.com/bsycorp/kind-travis-example))
+- GitLab On-Premise (CE or EE*) ([example](https://github.com/aleksivanov/kind-gitlab-example))
+- CircleCI `machine` executors ([example](https://github.com/aleksivanov/kind-circleci-example))
+- Travis CI ([example](https://github.com/aleksivanov/kind-travis-example))
 
 These should work:
 - GitLab.com with BYO Docker or Kubenetes runners
@@ -74,7 +74,7 @@ Unlikely to work:
 
 ## How do I build this for myself?
 
-Pre-built images are available on dockerhub (https://hub.docker.com/r/bsycorp/kind/), but if you want to bake in your own images to make it as fast as possible, you will want to built it yourself.
+Pre-built images are available on dockerhub (https://hub.docker.com/r/aleksivanov/kind/), but if you want to bake in your own images to make it as fast as possible, you will want to built it yourself.
 
 Run `./build.sh <image name>` to build the image. Add your custom images to `/images.sh` to have them be available at runtime. These environment variables are available to configure the build:
 
@@ -146,5 +146,5 @@ docker run --privileged \
   -e REGISTRY="registry.smth.com" \
   -e REGISTRY_USER="username" \
   -e REGISTRY_PASSWORD='$REGISTRY_TOKEN' \
-  bsycorp/kind:latest-1.10
+  aleksivanov/kind:latest-1.10
 ```
