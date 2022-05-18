@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-set -x
+
 mkdir -p /var/kube-config
 echo $KUBERNETES_VERSION > /var/kube-config/kubernetes-version
 KUBERNETES_MAJOR_MINOR_VERSION="$(echo ${KUBERNETES_VERSION:1} | cut -d. -f 1-2)"

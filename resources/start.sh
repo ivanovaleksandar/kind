@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+
 error_trap() {
     echo "Error on line $1"
     echo "Startup timeout, didn't become healthy after 3 mins.. details:"

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -x 
-
 # KUBERNETES_VERSION="v1.10.0"
 # MINIKUBE_VERSION="v0.28.2"
 TAG_LATEST="$1"
@@ -23,7 +21,7 @@ if [ -z "$KUBERNETES_VERSION" ]; then
 fi
 
 if [ -z "$STATIC_IP" ]; then
-	STATIC_IP="172.17.0.100"
+	STATIC_IP="172.30.99.1"
 	echo "Defaulting static IP to $STATIC_IP"
 fi
 
