@@ -21,6 +21,19 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Push
-        run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/kind:${DOCKER_IMAGE_TAG}
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+
+      - name: Tag the Docker when not master
+        if: github.ref != 'refs/heads/master'
+        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/kind:${DOCKER_IMAGE_TAG} ${{ secrets.DOCKERHUB_USERNAME }}/kind:${DOCKER_IMAGE_TAG}.${{ steps.date.outputs.date }}
+
+      - name: Docker Push when not master
+        if: github.ref != 'refs/heads/master'
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/kind:${DOCKER_IMAGE_TAG}.${{ steps.date.outputs.date }}
+
+      - name: Docker Push when master
+        if: github.ref == 'refs/heads/master'
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/kind:${DOCKER_IMAGE_TAG}
