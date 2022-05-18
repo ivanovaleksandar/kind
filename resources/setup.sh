@@ -95,7 +95,7 @@ cp /etc/kubernetes/admin.conf /root/.kube/config
 /usr/local/bin/kubectl -n kube-system create -f kube-proxy-cm.yaml
 rm -f kube-proxy-cm.yaml
 
-# workaround for https://github.com/bsycorp/kind/issues/19
+# workaround for https://github.com/aleksivanov/kind/issues/19
 /usr/local/bin/kubectl -n kube-system get cm coredns -o yaml | sed 's|/etc/resolv.conf|8.8.8.8 9.9.9.9|g' > coredns-cm.yaml
 /usr/local/bin/kubectl -n kube-system delete cm coredns
 /usr/local/bin/kubectl -n kube-system create -f coredns-cm.yaml
