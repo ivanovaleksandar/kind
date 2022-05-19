@@ -43,11 +43,20 @@ supervisorctl -c /etc/supervisord.conf start config-serve
 
 # start cluster
 echo "Starting Kubernetes.."
-supervisorctl -c /etc/supervisord.conf start kubelet
+# docker start  $(docker ps -q)
+/usr/local/bin/kind create cluster --config /kind.yaml
 
 sleep 15
 kubectl wait --for=condition=ready --timeout 3m pod --all --all-namespaces
 kubectl get po --all-namespaces
+/usr/local/bin/kubectl create rolebinding -n kube-system kube-scheduler --role=extension-apiserver-authentication-reader --serviceaccount=kube-system:kube-scheduler || true
+sed -i "s|kubernetes-admin@kubernetes|kind|g" /root/.kube/config
+sed -i "s|kubernetes-admin@mk|kind|g" /root/.kube/config
+sed -i "s|kubernetes-admin|kind|g" /root/.kube/config
+sed -i "s|: mk|: kind|g" /root/.kube/config
+sed -i "s|control-plane.minikube.internal|$STATIC_IP|g" /root/.kube/config
+cp /root/.kube/config /var/kube-config/config
+chmod 644 /var/kube-config/*
 
 # ready
 touch /var/kube-config/kubernetes-ready
